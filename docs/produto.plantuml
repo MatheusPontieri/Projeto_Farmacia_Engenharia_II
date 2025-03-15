@@ -1,0 +1,44 @@
+@startuml
+|Funcionário/Gerente|
+start
+:Realiza login com CPF e senha no sistema;
+:Seleciona operação (Cadastrar, Atualizar, Excluir ou Consultar);
+
+|Sistema|
+if () then ("Cadastrar")
+  :Recebe dados do produto;
+  note right
+    Dados a salvar:
+    - Data de entrada
+    - Nome do produto
+    - Fornecedor
+    - Valor unitário
+    - Quantidade
+  end note
+  :Valida dados;
+  :Salva no banco de dados;
+else if () then ("Atualizar")
+  :Localiza produto no banco de dados;
+  :Recebe dados atualizados;
+  note right
+    Dados a atualizar:
+    - Data de entrada
+    - Nome do produto
+    - Fornecedor
+    - Valor unitário
+    - Quantidade
+  end note
+  :Valida dados;
+  :Salva alterações;
+else if () then ("Excluir")
+  :Localiza produto;
+  :Remove produto;
+else ("Consultar")
+  :Recebe parâmetros de busca;
+  :Retorna lista de produtos;
+endif
+
+|Funcionário/Gerente|
+:Exibe mensagem de sucesso ou erro;
+stop
+@enduml

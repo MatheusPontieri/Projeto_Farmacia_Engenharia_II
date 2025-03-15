@@ -1,0 +1,52 @@
+@startuml
+|Cliente|
+start
+:Entra na farmácia;
+' Loop para seleção de produtos
+repeat
+:Escolhe produto ou pede ao atendente;
+
+  :Seleciona produto;
+  
+  |Atendente|
+  :Recebe pedido do cliente;
+  :Pesquisa produtos no sistema;
+  
+  |Sistema|
+  if () then (Disponível)
+    :Reserva produto;
+  else (Indisponível)
+    :Informa indisponibilidade;
+  endif
+  
+repeat while (Deseja mais produtos?)
+
+|Atendente|
+:Confirma produtos selecionados;
+
+|Sistema|
+:Calcula valor total da compra;
+
+|Atendente|
+:Informa valor ao cliente;
+
+|Cliente|
+:Informa CPF/dados;
+
+|Sistema|
+:Verifica pontos do cliente;
+if () then (Existe desconto)
+  :Aplica desconto;
+else (Sem desconto)
+endif
+
+|Cliente|
+:Efetua pagamento (dinheiro, cartão, etc.);
+
+|Atendente|
+:Finaliza venda;
+
+|Sistema|
+:Gera nota fiscal;
+stop
+@enduml
