@@ -1,0 +1,224 @@
+@startuml uml
+
+class Fornecedor {
+  - id: Long
+  - nome: String
+  - razaoSocial: String
+  - cnpj: String
+  + getId(): Long
+  + setId(id: Long): void
+  + getNome(): String
+  + setNome(nome: String): void
+  + getRazaoSocial(): String
+  + setRazaoSocial(razaoSocial: String): void
+  + getCnpj(): String
+  + setCnpj(cnpj: String): void
+  + consultarDados(id: Long): Fornecedor
+  + salvar(fornecedor: Fornecedor): Fornecedor
+  + atualizar(fornecedor: Fornecedor): void
+  + remover(id: Long): void
+}
+
+class Endereco {
+  - id: Long
+  - estado: String
+  - cidade: String
+  - bairro: String
+  - rua: String
+  - numero: String
+  + getId(): Long
+  + setId(id: Long): void
+  + getEstado(): String
+  + setEstado(estado: String): void
+  + getCidade(): String
+  + setCidade(cidade: String): void
+  + getBairro(): String
+  + setBairro(bairro: String): void
+  + getRua(): String
+  + setRua(rua: String): void
+  + getNumero(): String
+  + setNumero(numero: String): void
+  + consultarDados(id: Long): Endereco
+  + atualizarEndereco(endereco: Endereco): void
+}
+
+class Produto {
+  - id: Long
+  - nome: String
+  - descricao: String
+  - estoque: int
+  - preco: float
+  + getId(): Long
+  + setId(id: Long): void
+  + getNome(): String
+  + setNome(nome: String): void
+  + getDescricao(): String
+  + setDescricao(descricao: String): void
+  + getEstoque(): int
+  + setEstoque(estoque: int): void
+  + getPreco(): float
+  + setPreco(preco: float): void
+  + consultarProduto(id: Long): Produto
+  + reporEstoque(quantidade: int): void
+}
+
+class ItemVenda {
+  - id: Long
+  - quantidade: int
+  - precoUnitario: float
+  + getId(): Long
+  + setId(id: Long): void
+  + getQuantidade(): int
+  + setQuantidade(qtd: int): void
+  + getPrecoUnitario(): float
+  + setPrecoUnitario(preco: float): void
+  + consultarItens(venda: Venda): List<ItemVenda>
+  + calcularSubtotal(): float
+  - validarQuantidade(): boolean
+}
+
+class ProgramaFidelidade {
+  - id: Long
+  - pontos: int
+  - desconto: float
+  + getId(): Long
+  + setId(id: Long): void
+  + getPontos(): int
+  + setPontos(p: int): void
+  + getDesconto(): float
+  + setDesconto(d: float): void
+  + consultarDados(id: Long): ProgramaFidelidade
+  + aplicarDesconto(programa: ProgramaFidelidade): float
+  + registrarPontos(valorCompra: float): void
+  + resgatarPontos(quantidade: int): boolean
+}
+
+class Cliente {
+  - id: Long
+  - nome: String
+  - sobrenome: String
+  - dataNascimento: LocalDateTime
+  - cpf: String
+  + getId(): Long
+  + setId(id: Long): void
+  + getNome(): String
+  + setNome(nome: String): void
+  + getSobrenome(): String
+  + setSobrenome(sobrenome: String): void
+  + getDataNascimento(): LocalDateTime
+  + setDataNascimento(data: LocalDateTime): void
+  + getCpf(): String
+  + setCpf(cpf: String): void
+  + consultarDados(id: Long): Cliente
+  + atualizarCadastro(cliente: Cliente): void
+}
+
+class Telefone {
+  - id: Long
+  - codigoArea: String
+  - numero: String
+  + getId(): Long
+  + setId(id: Long): void
+  + getCodigoArea(): String
+  + setCodigoArea(c: String): void
+  + getNumero(): String
+  + setNumero(n: String): void
+  + consultarDados(id: Long): Telefone
+  + validarNumero(): boolean
+  + formatar(): String
+}
+
+class Venda {
+  - id: Long
+  - valorTotal: float
+  - data: LocalDateTime
+  + getId(): Long
+  + setId(id: Long): void
+  + getValorTotal(): float
+  + setValorTotal(valor: float): void
+  + getData(): LocalDateTime
+  + setData(data: LocalDateTime): void
+  + realizarVenda(venda: Venda): Venda
+  + calcularTotal(itens: List<ItemVenda>): float
+  + cancelarVenda(venda: Venda): boolean
+  + adicionarItem(item: ItemVenda): void
+  + removerItem(item: ItemVenda): void
+  + consultarDados(id: Long): Venda
+}
+
+class NotaFiscal {
+  - id: Long
+  - numeroNotaFiscal: String
+  - dataEmissao: LocalDateTime
+  - tipoNotaFiscal: String
+  + getId(): Long
+  + setId(id: Long): void
+  + getNumeroNotaFiscal(): String
+  + setNumeroNotaFiscal(numero: String): void
+  + getDataEmissao(): LocalDateTime
+  + setDataEmissao(data: LocalDateTime): void
+  + getTipoNotaFiscal(): String
+  + setTipoNotaFiscal(tipo: String): void
+  + consultarDados(id: Long): NotaFiscal
+  + emitir(venda: Venda): void
+}
+
+class Pagamento {
+  - id: Long
+  - formaPagamento: String
+  - status: String
+  - valor: float
+  + getId(): Long
+  + setId(id: Long): void
+  + getFormaPagamento(): String
+  + setFormaPagamento(f: String): void
+  + getStatus(): String
+  + setStatus(s: String): void
+  + getValor(): float
+  + setValor(v: float): void
+  + consultarDados(id: Long): Pagamento
+  + processar(pagamento: Pagamento): boolean
+  + estornar(pagamento: Pagamento): boolean
+}
+
+class Funcionario {
+  - id: Long
+  - nome: String
+  - sobrenome: String
+  - dataNascimento: LocalDateTime
+  - cpf: String
+  - cargo: String
+  + getId(): Long
+  + setId(id: Long): void
+  + getNome(): String
+  + setNome(nome: String): void
+  + getSobrenome(): String
+  + setSobrenome(s: String): void
+  + getDataNascimento(): LocalDateTime
+  + setDataNascimento(d: LocalDateTime): void
+  + getCpf(): String
+  + setCpf(cpf: String): void
+  + getCargo(): String
+  + setCargo(c: String): void
+  + consultarDados(id: Long): Funcionario
+}
+
+' --- Associações ---
+Fornecedor "1" *--> "1" Endereco  
+Fornecedor "1" *--> "1..*" Telefone  
+
+Cliente   "1" *--> "1" Telefone   
+Cliente   "1" --> "1" ProgramaFidelidade 
+
+Funcionario "1" *--> "1..*" Telefone 
+Produto  "0..*" o--> "1" Fornecedor     
+
+Venda "0..*" -right- "1..*" Produto
+(Venda, Produto) .. ItemVenda
+
+Venda "0..*" o--> "1" Cliente        
+Venda "1" *--> "1" NotaFiscal        
+Venda "1" *--> "1" Pagamento         
+Venda "1..*" o--> "1" Funcionario        
+
+@enduml
